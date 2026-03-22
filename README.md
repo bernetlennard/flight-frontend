@@ -1,73 +1,35 @@
-# React + TypeScript + Vite
+# Flugbuchungssystem - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dieses Projekt beinhaltet das Frontend für das Flugbuchungssystem.
+Es wurde als Single Page Application mit React umgesetzt.
 
-Currently, two official plugins are available:
+## 1. Verwendete Software & Technologien
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Framework:** React 18
+* **Sprache:** TypeScript
+* **Build-Tool:** Vite
+* **Styling / UI:** Bootstrap 5 (via `react-bootstrap`)
+* **Routing:** `react-router-dom`
+* **Node.js:** Version 18 oder neuer (empfohlen)
+* **Paketmanager:** npm
 
-## React Compiler
+## 2. Voraussetzungen
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Damit das Frontend funktioniert, **muss zwingend das Backend (Spring Boot) laufen** (siehe `https://github.com/bernetlennard/fligth-api`).
+* Das Backend wird standardmäßig unter `http://localhost:8080` erwartet.
+* Node.js muss auf dem System installiert sein.
 
-## Expanding the ESLint configuration
+## 3. Installation & Start
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Befolge diese Schritte, um die Frontend-Applikation lokal zu starten:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  **Terminal öffnen:** Navigiere im Terminal in das Root-Verzeichnis dieses Frontend-Projekts (`flight-frontend`).
+2.  **Abhängigkeiten installieren:** Führe den folgenden Befehl aus, um alle nötigen npm-Pakete herunterzuladen:
+    ```bash
+    npm install
+    ```
+3.  **Entwicklungsserver starten:** Starte die Applikation mit:
+    ```bash
+    npm run dev
+    ```
+4.  **App im Browser öffnen:** Das Terminal zeigt nun eine URL an (in der Regel `http://localhost:5173/`). Öffne diesen Link in deinem Webbrowser.
