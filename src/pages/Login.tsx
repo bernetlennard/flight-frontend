@@ -1,4 +1,3 @@
-// src/pages/Login.tsx
 import { useState } from 'react';
 import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -6,13 +5,11 @@ import { useAuth } from '../context/AuthContext';
 import type {AuthResponse} from '../types/Auth';
 
 export default function Login() {
-    // States für die Eingabefelder
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // UI-States
-    const [isRegistering, setIsRegistering] = useState(false); // Wechselt zwischen Login und Registrierung
+    const [isRegistering, setIsRegistering] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
@@ -26,7 +23,6 @@ export default function Login() {
 
         try {
             if (isRegistering) {
-                // 1. REGISTRIERUNG
                 const regResponse = await fetch('http://localhost:8080/users/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -36,12 +32,8 @@ export default function Login() {
                 if (!regResponse.ok) {
                     throw new Error('Registrierung fehlgeschlagen. Möglicherweise existiert diese E-Mail bereits.');
                 }
-
-                // Wir haben den User erstellt, aber wir brauchen das Token!
-                // Deshalb machen wir direkt weiter mit dem Login.
             }
 
-            // 2. LOGIN (Wird immer ausgeführt: Entweder normaler Login oder Auto-Login nach Registrierung)
             const loginResponse = await fetch('http://localhost:8080/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -52,7 +44,6 @@ export default function Login() {
                 throw new Error('Login fehlgeschlagen. E-Mail oder Passwort falsch.');
             }
 
-            // Erfolg! Token speichern und weiterleiten
             const data: AuthResponse = await loginResponse.json();
             login(data.token, data.user);
             navigate('/flights');
@@ -80,7 +71,6 @@ export default function Login() {
                     {error && <Alert variant="danger">{error}</Alert>}
 
                     <Form onSubmit={handleSubmit}>
-                        {/* Namensfeld wird nur bei der Registrierung angezeigt */}
                         {isRegistering && (
                             <Form.Group className="mb-3" controlId="name">
                                 <Form.Label>Vor- und Nachname</Form.Label>
@@ -120,7 +110,6 @@ export default function Login() {
                             {loading ? 'Bitte warten...' : (isRegistering ? 'Registrieren' : 'Einloggen')}
                         </Button>
 
-                        {/* Umschalter (Toggle) */}
                         <div className="text-center mt-3">
                             <span className="text-muted">
                                 {isRegistering ? 'Bereits ein Konto? ' : 'Noch kein Konto? '}

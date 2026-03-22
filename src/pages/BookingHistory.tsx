@@ -1,4 +1,3 @@
-// src/pages/BookingHistory.tsx
 import { useEffect, useState } from 'react';
 import { Container, Table, Spinner, Alert, Card } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';

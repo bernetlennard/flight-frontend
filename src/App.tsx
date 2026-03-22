@@ -1,4 +1,3 @@
-// src/App.tsx
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import FlightOverview from './pages/FlightOverview';
@@ -6,20 +5,17 @@ import Login from './pages/Login';
 import BookingHistory from './pages/BookingHistory';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
-// Wir lagern die Navbar in eine eigene kleine Komponente aus,
-// damit sie den useAuth Hook benutzen darf (der muss innerhalb des Providers sein).
 function Navigation() {
     const { isAuthenticated, user, logout } = useAuth();
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand as={Link} to="/">Felix' Flight Booking</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Flugbuchungssystem</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/flights">Flüge</Nav.Link>
-                        {/* NEU: Nur anzeigen, wenn eingeloggt */}
                         {isAuthenticated && (
                             <Nav.Link as={Link} to="/bookings">Meine Buchungen</Nav.Link>
                         )}

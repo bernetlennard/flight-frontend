@@ -1,4 +1,3 @@
-// src/pages/FlightOverview.tsx
 import { useEffect, useState } from 'react';
 import { Container, Table, Spinner, Alert, Form, Row, Col, Button, Card } from 'react-bootstrap';
 import type {Flight} from '../types/Flight';
@@ -21,11 +20,10 @@ export default function FlightOverview() {
 
     const [sortConfig, setSortConfig] = useState<SortConfig>(null);
 
-    // --- NEU: Wir holen uns den Login-Status ---
     const { isAuthenticated, token } = useAuth();
     const navigate = useNavigate();
 
-    // NEU: Funktion zum Buchen eines Fluges
+    //Funktion zum Buchen eines Fluges
     const handleBook = async (flightId: number) => {
         if (!token) return;
 
@@ -44,7 +42,6 @@ export default function FlightOverview() {
                 throw new Error(errorText || 'Fehler bei der Buchung.');
             }
 
-            // Erfolgreich gebucht! Wir leiten den User direkt zu seinen Buchungen weiter
             navigate('/bookings');
 
         } catch (err: any) {
@@ -181,8 +178,6 @@ export default function FlightOverview() {
                             <th style={{ cursor: 'pointer' }} onClick={() => requestSort('departureTime')}>Zeit {getSortIcon('departureTime')}</th>
                             <th style={{ cursor: 'pointer' }} onClick={() => requestSort('price')}>Preis {getSortIcon('price')}</th>
                             <th style={{ cursor: 'pointer' }} onClick={() => requestSort('availableTickets')}>Tickets {getSortIcon('availableTickets')}</th>
-
-                            {/* Header der Aktion-Spalte nur anzeigen, wenn eingeloggt */}
                             {isAuthenticated && <th>Aktion</th>}
                         </tr>
                         </thead>
@@ -203,14 +198,13 @@ export default function FlightOverview() {
                                     )}
                                 </td>
 
-                                {/* Den Buchen-Button nur anzeigen, wenn eingeloggt */}
                                 {isAuthenticated && (
                                     <td className="align-middle text-center">
                                         <Button
                                             variant="success"
                                             size="sm"
                                             disabled={flight.availableTickets === 0}
-                                            onClick={() => handleBook(flight.id)} // <-- HIER das Event einfügen
+                                            onClick={() => handleBook(flight.id)}
                                         >
                                             Buchen
                                         </Button>
