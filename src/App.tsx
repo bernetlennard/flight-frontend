@@ -43,7 +43,6 @@ function App() {
                     <Route path="/" element={<Navigate to="/flights" replace />} />
                     <Route path="/flights" element={<FlightOverview />} />
                     <Route path="/bookings" element={<BookingHistory />} />
-                    <Route path="/bookings" element={<BookingHistory />} />
                     <Route path="/login" element={<Login />} />
                 </Routes>
             </BrowserRouter>
